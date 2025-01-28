@@ -14,16 +14,12 @@ module Api
     end
 
     def create
-      @data = JSON.parse(request.body.read)
-      logger.info("JSON PARSE: #{parse_data(ParsedFields::TICKET)}")
-      @ticket = Ticket.new(parse_data(ParsedFields::TICKET))
-      render json: { errors: @ticket.errors.full_messages }, status: :unprocessable_entity unless @ticket.save
-      @excavator = @ticket.excavators.create(parse_data(ParsedFields::EXCAVATOR))
-      if @excavator.valid?
-        render json: { message: 'ok', received_data: [@ticket, @excavator] }, status: :ok
+      service = TicketCreationService.new(JSON.parse(request.body.read)).call
+
+      if service.success?
+        render json: { message: 'ok', ticket: service.ticket, excavator: service.excavator }, status: :ok
       else
-        render json: { errors: [@ticket.errors.full_messages, @excavator.errors.full_messages] },
-               status: :unprocessable_entity
+        render json: { message: 'error', errors: service.errors.flatten }, status: :unprocessable_entity
       end
     end
 
