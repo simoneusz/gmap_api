@@ -1,6 +1,6 @@
 function parsePolygon(polygonString) {
     return polygonString
-        .replace(/[(POLYGON)]/g,'')
+        .replace(/[(POLYGN)]/g,'')
         .split(',')
         .map(point => point.split(' ').map(Number));
 }
@@ -10,9 +10,8 @@ function init_maps(){
     if (!map_containers) return
     map_containers.forEach(container =>{
         let polygon = parsePolygon(container.dataset.polygon)
-        console.log(container.id)
-        let map = L.map(container.id).setView([polygon[0][0], polygon[0][1]], 10);
 
+        let map = L.map(container.id).setView([polygon[0][0], polygon[0][1]], 10);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -24,3 +23,4 @@ function init_maps(){
 
 
 document.addEventListener("DOMContentLoaded", init_maps);
+document.addEventListener("turbo:load", init_maps);
