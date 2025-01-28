@@ -5,6 +5,14 @@ module Api
   class TicketsController < ApplicationController
     protect_from_forgery with: :null_session, only: %i[create]
 
+    def index
+      @tickets = Ticket.all
+    end
+
+    def show
+      @ticket = Ticket.find(params[:id])
+    end
+
     def create
       @data = JSON.parse(request.body.read)
       logger.info("JSON PARSE: #{parse_data(ParsedFields::TICKET)}")
