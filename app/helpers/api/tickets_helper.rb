@@ -1,2 +1,4 @@
-module Api::TicketsHelper
+module Api
+  module TicketsHelper
+  end
 end
