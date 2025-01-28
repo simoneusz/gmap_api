@@ -1,0 +1,27 @@
+<% if @tickets.present? %>
+  <h2>Tickets</h2>
+  <% @tickets.each do |ticket| %>
+    <table class="table">
+      <thead>
+      <tr>
+        <% @tickets.first.attributes.each_key do |key| %>
+          <th scope="col"><%= key.humanize %></th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% ticket.attributes.each_value do |value| %>
+            <td><%= link_to value, api_ticket_path(ticket) %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      <h2>Excavators</h2>
+      <%= render partial: 'api/tickets/excavator_table', locals: {excavators: ticket.excavators} %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No tickets available.</p>
+<% end %>

@@ -1,0 +1,20 @@
+<% if excavators.any? %>
+  <table class="table">
+    <thead>
+    <tr>
+      <% excavators.first.attributes.each_key do |key| %>
+        <th scope="col"><%= key.humanize %></th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <% excavators.first.attributes.each_value do |value| %>
+        <td><%= value %></td>
+      <% end %>
+    </tr>
+    </tbody>
+  </table>
+<% else %>
+  <p>No tickets available.</p>
+<% end %>
