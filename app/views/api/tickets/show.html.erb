@@ -1,3 +1,5 @@
+<%= javascript_import_module_tag "mapper" %>
+
 <% if @ticket.present? %>
   <h2>Tickets</h2>
   <table class="table">
@@ -19,7 +21,9 @@
   <div class="container">
     <h2>Excavators</h2>
     <%= render partial: 'api/tickets/excavator_table', locals: {excavators: @ticket.excavators} %>
+    <div id="map-1" data-polygon='<%= @ticket.well_known_text %>' style="height:500px"></div>
   </div>
 <% else %>
   <p>No tickets available.</p>
 <% end %>
+
