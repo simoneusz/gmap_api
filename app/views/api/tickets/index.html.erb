@@ -1,6 +1,8 @@
+<%= javascript_import_module_tag "mapper" %>
+
 <% if @tickets.present? %>
   <h2>Tickets</h2>
-  <% @tickets.each do |ticket| %>
+  <% @tickets.each_with_index do |ticket, index| %>
     <table class="table">
       <thead>
       <tr>
@@ -20,6 +22,7 @@
     <div class="container">
       <h2>Excavators</h2>
       <%= render partial: 'api/tickets/excavator_table', locals: {excavators: ticket.excavators} %>
+      <div id="map-<%= index + 1 %>" data-polygon="<%= ticket.well_known_text %>"  style="height:500px"></div>
     </div>
   <% end %>
 <% else %>
