@@ -1,0 +1,11 @@
+AllCops:
+  Exclude:
+    - 'bin/bundle'
+    - 'bin/setup'
+    - 'config/environments/*'
+    - 'db/migrate/*'
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+

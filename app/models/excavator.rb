@@ -1,5 +1,12 @@
+# frozen_string_literal: true
+
+# Excavator model
 class Excavator < ApplicationRecord
   belongs_to :ticket
 
-  validates :company_name, presence: true
+  validates :ticket_id,
+            :company_name,
+            :address,
+            :crew_on_side,
+            presence: true
 end
