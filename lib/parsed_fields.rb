@@ -16,6 +16,6 @@ class ParsedFields
   EXCAVATOR = {
     company_name: %w[Excavator CompanyName],
     address: %w[Excavator Address],
-    crew_on_side: %w[Excavator CrewOnSite]
+    crew_on_side: %w[Excavator CrewOnsite]
   }.freeze
 end
