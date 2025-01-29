@@ -4,6 +4,7 @@ AllCops:
     - 'bin/setup'
     - 'config/environments/*'
     - 'db/migrate/*'
+    - 'spec/requests/api/*'
 Style/FrozenStringLiteralComment:
   Enabled: false
 Style/Documentation:
