@@ -50,6 +50,8 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
+  gem 'faker'
+  gem 'rspec-rails', '~> 7.0.0'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
 end
@@ -65,4 +67,8 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  gem 'factory_bot', '~> 6.5'
+  gem 'shoulda-matchers', '~> 6.0'
+end
 gem 'active_model_serializers', '~> 0.10.0'
