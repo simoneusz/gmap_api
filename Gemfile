@@ -70,5 +70,6 @@ end
 group :test do
   gem 'factory_bot', '~> 6.5'
   gem 'shoulda-matchers', '~> 6.0'
+  gem "json_matchers"
 end
 gem 'active_model_serializers', '~> 0.10.0'
