@@ -1,30 +1,105 @@
-1) Create a new application using Ruby 2.4, Rails 5.1, PostgreSQL 9.5+
-2) Create an API controller which will accept an HTTP POST request containing a JSON string. See below for sample JSON.
-3) Once the API is called from outside of the application persist JSON data in database. Create two resources from the JSON: Ticket and Excavator. Ticket is the main object and Excavator will belong to the Ticket. Attributes for both objects are described below. Use Rails attribute naming conventions and appropriate data types.
-  
-  Ticket fields:
-  - RequestNumber
-  - SequenceNumber
-  - RequestType
-  - DateTimes->ResponseDueDateTime
-  - ServiceArea->PrimaryServiceAreaCode->SACode, 
-  - ServiceArea->AdditionalServiceAreaCodes->SACode
-  - DigsiteInfo->WellKnownText (can be saved as plain text)  
-  
-  Excavator fields:
-  - Excavator->CompanyName
-  - Excavator->Address (full address including city, zip etc)
-  - Excavator->CrewOnSite
-4) Add basic index and show views for the tickets and also include excavator data.
-5) DigsiteInfo-WellKnownText has polygon data which should be plotted on a map.
+# Ticket Excavation API
 
-Things I will be looking for:
-1) Code cleanliness
-2) Code structure
-3) Code diligence
-4) Test cases
+# 📌  Overview
 
-Sample JSON Data
+Ticket Excavation API is a Ruby on Rails application designed to receive and process excavation ticket requests via an API. The application:
+
+- Accepts JSON payloads via an HTTP POST request
+
+- Parses and stores data in a PostgreSQL database
+
+- Creates Ticket as the main resource and Excavator as a related entity
+
+- Provides basic index and show views for tickets
+
+- Displays excavation site polygons using Well-Known Text (WKT) format on a map
+
+
+# 🛠️ Tech Stack
+[![Ruby](https://img.shields.io/badge/Ruby-3.2.2-red.svg)](https://www.ruby-lang.org/en/)
+[![Rails](https://img.shields.io/badge/Rails-7.1.5-blue.svg)](https://rubyonrails.org/)
+
+PostgreSQL 9.5+
+
+Leaflet.js (for map visualization)
+
+
+# 🚀 Setup & Installation
+
+**_Prerequisites_**
+
+Ensure you have the following installed:
+
+Ruby 3.2.2,
+Rails 7.1.5,
+PostgreSQL 9.5+
+
+
+## Installation Steps
+
+1. Clone the repository:
+```
+git clone git@github.com:simoneusz/gmap_api.git
+cd ticket-excavation-api
+```
+
+2. Install dependencies:
+```
+bundle install
+```
+
+3. Setup the database:
+```
+rails db:create db:migrate db:seed
+```
+
+4. Start the Rails server:
+```
+rails server
+```
+
+5. API is now available at http://localhost:3000
+
+
+
+📡 API Endpoints
+
+**Create a Ticket**
+
+POST /api/tickets
+
+- Accepts JSON payload
+
+- Creates a Ticket and associated Excavator
+
+**Get All Tickets**
+
+GET /tickets
+
+- Returns a list of stored tickets
+
+
+**Get a Specific Ticket**
+
+GET /tickets/:id
+
+- Returns a single ticket, including Excavator details and DigsiteInfo polygon
+
+
+# 🗺️ Digsite Map Visualization
+
+DigsiteInfo polygon data is stored as Well-Known Text (WKT)
+
+Rendered using Leaflet.js on the ticket show page
+
+
+# ✅ Testing
+
+Run test cases with:
+
+rspec
+
+# Example Request:
 ```json
 {
   "ContactCenter": "UPCA",
